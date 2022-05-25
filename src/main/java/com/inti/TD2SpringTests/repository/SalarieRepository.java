@@ -11,5 +11,6 @@ import com.inti.TD2SpringTests.model.Salarie;
 //@Transactional
 public interface SalarieRepository extends JpaRepository<Salarie, Integer>
 {
+	Salarie findByNom(String nom);
 
 }

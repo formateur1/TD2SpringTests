@@ -61,14 +61,14 @@ public class SalarieRepositoryTests
 	public void TestGetSalarie()
 	{
 		//When  (recupère en base)
-		Salarie toGetSalarie = salarieRepository.getReferenceById(2);
+		Salarie toGetSalarie = salarieRepository.getReferenceById(salarie1.getId());
 		
 		//Then
 		assertThat(toGetSalarie).isNotNull();
-		assertThat(toGetSalarie.getId()).isEqualTo(2);
-		assertThat(toGetSalarie.getNom()).isEqualTo("Sophie");
-		assertThat(toGetSalarie.getPrenom()).isEqualTo("Marie");
-		assertThat(toGetSalarie.getEmail()).isEqualTo("sm@gmail.com");
+		assertThat(toGetSalarie.getId()).isEqualTo(salarie1.getId());
+		assertThat(toGetSalarie.getNom()).isEqualTo("Toto");
+		assertThat(toGetSalarie.getPrenom()).isEqualTo("Titi");
+		assertThat(toGetSalarie.getEmail()).isEqualTo("tt@gmail.com");
 	}
 	
 	@Test
@@ -150,6 +150,21 @@ public class SalarieRepositoryTests
 		assertThat(lisSalaries).hasSize(3);
 		assertThat(lisSalaries.get(0).getClass()).hasSameClassAs(Salarie.class);
 		assertThat(lisSalaries.get(1).toString()).hasToString(s1.toString());
+		
+	}
+	
+	@Test
+	public void testGetSalarieByNom()
+	{
+		// given
+		Salarie s1 = salarieRepository.save(new Salarie("Jean", "Claude", "jc@gmail.com"));
+		
+		// when
+		Salarie salarieParNom = salarieRepository.findByNom("Jean");
+		
+		//then
+		assertThat(salarieParNom).isNotNull();
+		
 		
 	}
 	
